@@ -1,0 +1,525 @@
+/* ═══════════════════════════════════════════════════════════
+   Paradise Biryani — Premium Royal Ivory / Burgundy / Gold
+   60% ivory · 20% burgundy · 10% dark · 10% gold
+   ═══════════════════════════════════════════════════════════ */
+:root{
+  --ivory:#FFF9F0;
+  --warm:#FFFCF7;
+  --cream:#F7EDDC;
+  --cream-2:#F3E4CC;
+  --burgundy:#7A1725;
+  --burgundy-2:#931E2E;
+  --maroon:#4A0D17;
+  --maroon-deep:#2E070F;
+  --gold:#C9A24A;
+  --gold-l:#E5C878;
+  --gold-d:#9A7A2E;
+  --cocoa:#241714;
+  --ink-text:#4A3532;
+  --muted:#8A756E;
+  --line:#EADCC3;
+  --card-shadow:0 18px 45px rgba(74,13,23,.10), 0 2px 8px rgba(74,13,23,.06);
+  --card-shadow-hover:0 28px 60px rgba(74,13,23,.16), 0 4px 14px rgba(74,13,23,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:92px;overflow-x:hidden;overflow-x:clip;scrollbar-gutter:stable;width:100%}
+/* ANTI-JITTER Step 7: lightbox + mobile drawer set body overflow:hidden, which
+   removes the desktop scrollbar and shifts the whole page sideways (looks like
+   flicker). A stable gutter reserves that space so open/close causes no shift. */
+body{background:var(--ivory);color:var(--ink-text);margin:0;overflow-x:hidden;overflow-x:clip;width:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+img{max-width:100%;display:block}
+::selection{background:var(--burgundy);color:#fff}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--burgundy);color:#fff;padding:10px 18px;z-index:100;border-radius:0 0 10px 0;font-size:13px;font-weight:700}
+.skip-link:focus{left:0}
+
+/* ── Typography helpers ── */
+.section-title{font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.08;color:var(--maroon);margin-top:10px}
+.section-title em{font-style:italic}
+.section-title-sm{font-size:clamp(1.7rem,3.5vw,2.4rem);line-height:1.12;color:var(--maroon);margin-top:8px}
+.eyebrow-sm{font-size:11px;letter-spacing:.35em;color:var(--gold-d);font-weight:800}
+.gold-divider{display:flex;align-items:center;gap:10px;margin-top:16px}
+.gold-divider.center{justify-content:center}
+.gold-divider.sm-left{justify-content:flex-start}
+@media(max-width:640px){.gold-divider.sm-left{justify-content:center}}
+.gold-divider span{display:block;width:72px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--gold))}
+.gold-divider span:last-child{background:linear-gradient(90deg,var(--gold),transparent)}
+.gold-divider i{font-style:normal;font-size:9px;color:var(--burgundy)}
+.gold-divider.light span{background:linear-gradient(90deg,transparent,var(--gold-l))}
+.gold-divider.light span:last-child{background:linear-gradient(90deg,var(--gold-l),transparent)}
+.gold-divider.light i{color:var(--gold-l)}
+.gold-divider-sm{height:2px;width:64px;background:linear-gradient(90deg,var(--gold),transparent);border-radius:2px}
+
+/* ── Header : cream, premium ── */
+#siteHeader{background:#FFFCF7;border-bottom:1px solid var(--line);transition:box-shadow .25s,background-color .25s,border-color .25s;backface-visibility:hidden;transform:none}
+/* ANTI-JITTER Step 6: backdrop-filter:blur removed. A fixed blurred header forces
+   the browser to repaint everything scrolling beneath it on every frame (classic
+   scroll-flicker source on laptop iGPUs + screen recording). Solid cream is
+   visually identical here because the page behind the header is cream. */
+#siteHeader.scrolled{background:rgba(255,252,247,.97);box-shadow:0 10px 32px rgba(74,13,23,.12);border-bottom-color:#E2CFA9}
+/* ANTI-JITTER: header inner bar height is pinned — .scrolled may only change
+   visual props (background/shadow/border). Never height/padding/margin here,
+   otherwise the fixed header reflows and visibly jumps at the scroll threshold. */
+#siteHeader>.max-w-7xl{height:76px}
+.nav-link{color:#6B4A45;position:relative;padding:8px 0;transition:color .22s}
+.nav-link::after{content:"";position:absolute;left:0;bottom:2px;height:2px;width:0;border-radius:2px;background:linear-gradient(90deg,var(--burgundy),var(--gold));transition:width .28s}
+.nav-link:hover{color:var(--burgundy)}
+.nav-link:hover::after{width:100%}
+.btn-call{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--burgundy-2),var(--burgundy) 55%,var(--maroon));color:#FFF9F0;font-weight:800;font-size:12px;letter-spacing:.14em;padding:12px 22px;border-radius:999px;box-shadow:0 8px 22px rgba(122,23,37,.32),inset 0 1px 0 rgba(255,255,255,.22);border:1px solid rgba(201,162,74,.45);transition:transform .2s,box-shadow .2s,filter .2s}
+.btn-call:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:0 12px 28px rgba(122,23,37,.4)}
+.btn-wa-nav{display:inline-flex;align-items:center;gap:8px;background:#1E9E52;color:#fff;font-weight:800;font-size:12px;letter-spacing:.14em;padding:12px 22px;border-radius:999px;box-shadow:0 8px 22px rgba(30,158,82,.3);transition:transform .2s,background .2s}
+.btn-wa-nav:hover{transform:translateY(-2px);background:#22B45E}
+.hamburger{background:var(--warm);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;cursor:pointer;transition:border-color .2s}
+.hamburger:hover{border-color:var(--gold)}
+.ham-lines{display:flex;flex-direction:column;gap:5px;width:22px}
+.ham-lines span{display:block;height:2.4px;background:var(--burgundy);border-radius:2px}
+.ham-lines span:nth-child(2){background:var(--gold-d)}
+.close-x{width:42px;height:42px;border-radius:50%;background:var(--cream);border:1px solid var(--line);color:var(--burgundy);font-size:26px;line-height:1;cursor:pointer;transition:background .2s}
+.close-x:hover{background:var(--cream-2)}
+#mobileNav .slide-panel{animation:slideIn .3s ease;box-shadow:-20px 0 60px rgba(74,13,23,.18)}
+@keyframes slideIn{from{transform:translateX(40px);opacity:0}to{transform:none;opacity:1}}
+.mob-link{font-size:20px;padding:13px 4px;border-bottom:1px solid var(--line);color:var(--maroon);transition:color .2s,padding-left .2s}
+.mob-link:hover{color:var(--burgundy);padding-left:10px}
+
+/* ── Buttons ── */
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,var(--burgundy-2),var(--burgundy) 55%,var(--maroon));color:#FFF9F0;font-weight:800;letter-spacing:.1em;font-size:13.5px;padding:15px 32px;border-radius:999px;border:1px solid rgba(201,162,74,.5);box-shadow:0 12px 30px rgba(122,23,37,.3),inset 0 1px 0 rgba(255,255,255,.22);transition:transform .2s,box-shadow .2s,filter .2s;cursor:pointer}
+.btn-primary:hover{transform:translateY(-2px);filter:brightness(1.07);box-shadow:0 16px 36px rgba(122,23,37,.4)}
+.btn-primary svg{width:18px;height:18px}
+.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid var(--burgundy);color:var(--burgundy);font-weight:800;letter-spacing:.1em;font-size:13.5px;padding:14px 30px;border-radius:999px;background:rgba(122,23,37,.04);transition:all .2s;cursor:pointer}
+.btn-outline:hover{background:var(--burgundy);color:#FFF9F0;transform:translateY(-2px);box-shadow:0 12px 26px rgba(122,23,37,.28)}
+.btn-lg{padding:17px 34px;font-size:14px}
+.btn-whatsapp{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,#22B45E,#1E9E52);color:#fff;font-weight:800;letter-spacing:.08em;font-size:13.5px;padding:15px 32px;border-radius:999px;box-shadow:0 12px 28px rgba(30,158,82,.32),inset 0 1px 0 rgba(255,255,255,.25);transition:transform .2s,filter .2s}
+.btn-whatsapp:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.btn-gold{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,var(--gold-l),var(--gold) 60%,#A8842F);color:#3A2303;font-weight:800;letter-spacing:.12em;font-size:14px;padding:15px 34px;border-radius:999px;box-shadow:0 12px 30px rgba(201,162,74,.45),inset 0 1px 0 rgba(255,255,255,.5);transition:transform .2s,filter .2s}
+.btn-gold:hover{transform:translateY(-2px);filter:brightness(1.05)}
+.btn-ghostlight{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid rgba(229,200,120,.6);color:var(--gold-l);font-weight:800;letter-spacing:.1em;font-size:13.5px;padding:14px 30px;border-radius:999px;transition:all .2s;background:rgba(229,200,120,.06)}
+.btn-ghostlight:hover{background:rgba(229,200,120,.16);transform:translateY(-2px)}
+
+/* ── HERO ── */
+.hero{position:relative;background:linear-gradient(180deg,#FFFCF7 0%,#FFF9F0 55%,#FBF1E1 100%);overflow:hidden;padding:132px 0 96px}
+.hero-pattern{position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(560px 320px at 88% 8%,rgba(201,162,74,.16),transparent 65%),
+  radial-gradient(640px 420px at -8% 90%,rgba(122,23,37,.07),transparent 60%),
+  radial-gradient(rgba(122,23,37,.07) 1.1px,transparent 1.1px);
+  background-size:auto,auto,26px 26px}
+.hero-pattern::after{content:"";position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(transparent,#FBF1E1)}
+.hero-inner{position:relative;z-index:2}
+.royal-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:800;letter-spacing:.3em;color:var(--burgundy);border:1px solid rgba(201,162,74,.55);background:rgba(255,255,255,.7);padding:9px 18px;border-radius:999px;box-shadow:0 4px 14px rgba(122,23,37,.08)}
+.royal-eyebrow .crown{color:var(--gold-d);font-size:14px}
+.hero-title{font-size:clamp(3rem,8.5vw,5.6rem);line-height:.95;margin-top:20px;letter-spacing:.01em}
+.hero-italic{font-size:.92em;letter-spacing:.01em}
+.hero-tags{margin-top:14px;font-size:13px;font-weight:800;letter-spacing:.22em;color:var(--gold-d)}
+.hero-tags span{color:var(--burgundy);margin:0 4px}
+.hero-sub{margin-top:14px;font-size:16px;line-height:1.75;color:#6B5350;max-width:34rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+.hero-price-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:26px}
+.hero-price-card{background:#fff;border:1px solid var(--line);border-left:4px solid var(--burgundy);border-radius:14px;padding:12px 20px;box-shadow:var(--card-shadow)}
+.hero-price-card small{font-size:10px;font-weight:800;letter-spacing:.24em;color:var(--gold-d)}
+.hero-price-card p{margin-top:2px;font-size:14px;color:var(--muted)}
+.hero-price-card strong{font-family:"Playfair Display",serif;font-size:26px;color:var(--burgundy)}
+.hero-meta{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);font-weight:600}
+.hero-dot{width:8px;height:8px;border-radius:50%;background:#22B45E;box-shadow:0 0 0 4px rgba(34,180,94,.18)}
+@media (prefers-reduced-motion:no-preference){
+.hero-dot{animation:pulse 2.4s ease-in-out infinite}
+}
+@keyframes pulse{50%{opacity:.5}}
+/* hero visual */
+.hero-visual{position:relative;display:flex;justify-content:center}
+.hero-arch{position:absolute;width:min(480px,92%);aspect-ratio:1/1.08;top:-24px;background:linear-gradient(160deg,var(--burgundy),var(--maroon));border-radius:230px 230px 28px 28px;opacity:.94;box-shadow:0 30px 70px rgba(74,13,23,.28)}
+.hero-arch::after{content:"";position:absolute;inset:12px;border:1.5px dashed rgba(229,200,120,.55);border-radius:218px 218px 20px 20px}
+.hero-photo-main{position:relative;width:min(440px,88%);aspect-ratio:1/1.12;margin-top:6px;z-index:2}
+.hero-photo-main{overflow:hidden;border-radius:210px 210px 24px 24px}
+.hero-photo-main img{width:100%;height:100%;object-fit:cover;display:block;border-radius:210px 210px 24px 24px;border:6px solid #fff;box-shadow:0 30px 70px rgba(74,13,23,.3)}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+.hero-photo-main img{animation:heroEnter .8s ease both}
+}
+@keyframes heroEnter{from{opacity:0}to{opacity:1}}
+.hero-ring{position:absolute;inset:-14px;border:2px solid rgba(201,162,74,.5);border-radius:224px 224px 32px 32px;pointer-events:none}
+.hero-badge-top{position:absolute;top:34px;right:2%;z-index:3;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 18px;text-align:center;box-shadow:var(--card-shadow);transform:translateY(0) translateZ(0);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.hero-badge-bottom{position:absolute;left:0;bottom:64px;z-index:3;display:flex;gap:12px;align-items:center;background:rgba(255,252,247,.96);border:1px solid var(--line);border-radius:16px;padding:12px 16px;box-shadow:var(--card-shadow);max-width:270px;transform:translateY(0) translateZ(0);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.steam-mini{display:flex;gap:4px;align-items:flex-end;height:30px}
+.steam-mini i{display:block;width:4px;height:22px;border-radius:4px;background:linear-gradient(to top,transparent,var(--gold));opacity:.55}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+.steam-mini i{animation:steam 2.8s ease-in-out infinite;opacity:0}
+.steam-mini i:nth-child(2){animation-delay:.4s}.steam-mini i:nth-child(3){animation-delay:.8s}
+}
+@keyframes steam{0%{transform:translateY(8px);opacity:0}50%{opacity:.9}100%{transform:translateY(-8px);opacity:0}}
+.hero-thumb-row{position:absolute;bottom:-6px;right:4%;z-index:3;display:flex;gap:10px}
+.hero-thumb-row img{width:74px;height:74px;object-fit:cover;border-radius:18px;border:3px solid #fff;box-shadow:0 12px 26px rgba(74,13,23,.25)}
+
+/* ── Reveal ──
+   FINAL FIX: opacity-only. No translateY during scroll. IO adds .visible
+   once (script.js:226) and never touches transform. */
+.reveal{opacity:0;transform:none!important;transition:opacity 300ms ease}
+.reveal.visible{opacity:1;transform:none!important}
+.reveal.d1{transition-delay:.06s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.26s}.reveal.d4{transition-delay:.36s}
+/* Quick bar overlaps the hero via negative margin — fade only, never moves. */
+.quick-bar.reveal{opacity:0;transform:none!important}
+.quick-bar.reveal.visible{opacity:1;transform:none!important}
+
+/* ── Quick bar : cream cards ── */
+.quick-wrap{background:linear-gradient(#FBF1E1,#FFF9F0);padding:0 0 8px;margin-top:-46px;position:relative;z-index:5}
+.quick-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;background:transparent}
+.qa{display:flex;align-items:center;gap:14px;background:var(--warm);border:1px solid var(--line);border-radius:18px;padding:18px 20px;box-shadow:var(--card-shadow);transition:transform .22s,box-shadow .22s,border-color .22s;position:relative;overflow:hidden}
+.qa::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--burgundy),var(--gold))}
+.qa:hover{transform:translateY(-4px);box-shadow:var(--card-shadow-hover);border-color:#DCC48F}
+.qa-text strong{display:block;font-size:14px;letter-spacing:.06em;color:var(--maroon);font-weight:800}
+.qa-text small{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+.qa-icon{width:48px;height:48px;border-radius:14px;flex:none;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--burgundy),var(--maroon));color:#F6D98A;border:1px solid rgba(201,162,74,.5)}
+.qa-icon svg{width:22px;height:22px}
+.qa-icon.green{background:linear-gradient(135deg,#22B45E,#157A3E);color:#fff;border-color:rgba(255,255,255,.3)}
+.qa-green{background:linear-gradient(180deg,#F2FBF4,#FFFCF7)}
+.qa-arrow{margin-left:auto;color:var(--gold-d);font-size:20px;font-weight:800}
+
+/* ── Intro ── */
+.intro-section{padding:96px 0 84px;background:var(--ivory)}
+.intro-copy{font-size:17px;line-height:1.8;color:#5C4642;margin-top:18px}
+.intro-copy-sm{font-size:15px;line-height:1.8;color:var(--muted);margin-top:12px}
+.intro-stats{display:flex;align-items:center;gap:26px;margin-top:28px;background:var(--warm);border:1px solid var(--line);border-radius:16px;padding:18px 26px;box-shadow:var(--card-shadow);width:fit-content;max-width:100%}
+.stat-num{font-family:"Playfair Display",serif;font-size:26px;font-weight:800;color:var(--burgundy)}
+.stat-label{font-size:10px;font-weight:800;letter-spacing:.22em;color:var(--gold-d);margin-top:2px}
+.stat-sep{width:1px;height:44px;background:var(--line)}
+.intro-visual{position:relative}
+.intro-frame{border-radius:26px;overflow:hidden;border:1px solid #E7D3AC;box-shadow:var(--card-shadow-hover);position:relative}
+.intro-frame img{width:100%;height:440px;object-fit:cover;transition:transform .8s;display:block}
+.intro-frame:hover img{transform:scale(1.05)}
+.intro-frame::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(74,13,23,.22),transparent 45%);pointer-events:none}
+.intro-card{position:absolute;left:-14px;bottom:30px;background:rgba(255,252,247,.97);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:14px;padding:14px 20px;box-shadow:var(--card-shadow-hover)}
+.intro-card-eyebrow{font-size:10px;font-weight:800;letter-spacing:.28em;color:var(--gold-d)}
+.intro-seal{position:absolute;top:-22px;right:26px;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--burgundy),var(--maroon));color:var(--gold-l);display:flex;align-items:center;justify-content:center;font-size:26px;border:2px solid var(--gold-l);box-shadow:0 14px 30px rgba(74,13,23,.35)}
+
+/* ── Menu : premium light cards ── */
+.menu-section{background:linear-gradient(180deg,#FFF9F0,#FDF3E4 50%,#FFF9F0);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:88px 0 80px;position:relative}
+.menu-section::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(720px,90%);height:120px;background:radial-gradient(closest-side,rgba(201,162,74,.18),transparent);pointer-events:none}
+.filters{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:28px}
+.filter{font-size:11.5px;letter-spacing:.12em;font-weight:800;padding:11px 20px;border-radius:999px;border:1.5px solid var(--line);color:#7A5F5A;background:#fff;transition:all .22s;cursor:pointer;box-shadow:0 2px 8px rgba(74,13,23,.05)}
+.filter:hover{border-color:var(--gold);color:var(--burgundy);transform:translateY(-1px)}
+.filter.active{background:linear-gradient(135deg,var(--burgundy-2),var(--maroon));border-color:var(--burgundy);color:#FFF3D6;box-shadow:0 8px 20px rgba(122,23,37,.32)}
+.menu-grid{display:grid;gap:26px;margin-top:40px;grid-template-columns:1fr}
+@media(min-width:640px){.menu-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.menu-grid{grid-template-columns:repeat(3,1fr)}}
+.menu-card{background:var(--warm);border:1px solid var(--line);border-radius:22px;overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s;display:flex;flex-direction:column;box-shadow:var(--card-shadow)}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+.menu-card{animation:cardIn .45s ease both}
+}
+@keyframes cardIn{from{opacity:0}to{opacity:1}}
+.menu-card:hover{transform:translateY(-7px);border-color:#D9B96A;box-shadow:var(--card-shadow-hover)}
+.menu-img{position:relative;height:220px;aspect-ratio:8/5;overflow:hidden;background:var(--cream);contain:paint}
+.menu-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s;display:block}
+.menu-card:hover .menu-img img{transform:scale(1.08)}
+.menu-img::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(46,7,15,.38),transparent 55%);pointer-events:none}
+.cat-badge{position:absolute;top:12px;left:12px;z-index:2;font-size:10px;letter-spacing:.16em;font-weight:800;background:rgba(255,252,247,.95);border:1px solid rgba(201,162,74,.6);color:var(--burgundy);padding:7px 13px;border-radius:999px;box-shadow:0 4px 12px rgba(0,0,0,.12)}
+.price-tag{position:absolute;bottom:12px;right:12px;z-index:2;background:linear-gradient(135deg,var(--burgundy),var(--maroon));color:#FFE9A8;font-weight:800;padding:8px 18px;border-radius:999px;font-size:16px;box-shadow:0 8px 20px rgba(0,0,0,.3);border:1px solid rgba(229,200,120,.55);font-family:"Playfair Display",serif}
+.menu-body{padding:22px;display:flex;flex-direction:column;flex:1}
+.menu-body h3{font-family:"Playfair Display",serif;font-weight:700;font-size:19px;line-height:1.3;color:var(--maroon)}
+.menu-body .desc{font-size:13.5px;color:#7A625D;margin-top:7px;line-height:1.65;min-height:44px}
+.qty-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:16px;background:#FBF3E4;border:1px solid var(--line);border-radius:14px;padding:9px 12px}
+.qty-ctrl{display:flex;align-items:center;gap:2px;background:#fff;border:1.5px solid #E3C893;border-radius:999px;padding:3px}
+.qty-btn{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:800;color:var(--burgundy);transition:background .18s,transform .12s;min-width:38px;min-height:38px;cursor:pointer;background:transparent;border:none}
+.qty-btn:hover{background:rgba(122,23,37,.1)}
+.qty-btn:active{transform:scale(.9);background:rgba(122,23,37,.18)}
+.qty-val{min-width:2.5rem;text-align:center;font-weight:800;font-size:16px;color:var(--maroon);font-variant-numeric:tabular-nums}
+.qty-label{font-size:10px;letter-spacing:.22em;color:var(--gold-d);font-weight:800}
+.item-total{font-weight:700;font-size:13px;color:#6B5350;white-space:nowrap}
+.item-total strong{color:var(--burgundy);font-size:18px;font-family:"Playfair Display",serif;font-variant-numeric:tabular-nums}
+.buy-btn{margin-top:12px;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,#22B45E,#1B8A48);color:#fff;font-weight:800;font-size:12.5px;letter-spacing:.07em;padding:14px;border-radius:14px;transition:all .2s;min-height:50px;box-shadow:0 10px 24px rgba(27,138,72,.3),inset 0 1px 0 rgba(255,255,255,.25);text-decoration:none}
+.buy-btn svg{width:20px;height:20px;flex:none}
+.buy-btn:hover{background:#22B45E;box-shadow:0 12px 28px rgba(27,138,72,.42);transform:translateY(-1px)}
+.per-unit{font-size:11px;color:var(--muted);margin-top:9px;text-align:center}
+
+/* ── Signature (burgundy dark — allowed) ── */
+.signature{position:relative;background:linear-gradient(140deg,var(--maroon-deep) 0%,var(--maroon) 55%,#5C1220 100%);overflow:hidden}
+.signature-texture{position:absolute;inset:0;background:radial-gradient(600px 300px at 85% 20%,rgba(201,162,74,.18),transparent 65%),radial-gradient(500px 300px at 10% 90%,rgba(201,162,74,.1),transparent 60%),radial-gradient(rgba(229,200,120,.08) 1px,transparent 1px);background-size:auto,auto,24px 24px}
+.signature-ghost{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.14}
+.sig-eyebrow{display:flex;align-items:center;gap:12px;font-size:11px;font-weight:800;letter-spacing:.32em;color:var(--gold-l)}
+.sig-eyebrow span{display:block;width:44px;height:2px;background:var(--gold)}
+.sig-title{font-size:clamp(2.8rem,6vw,4.4rem);line-height:.98;color:#FFF9F0;margin-top:14px}
+.sig-copy{margin-top:16px;color:rgba(255,249,240,.78);max-width:28rem;line-height:1.75}
+.sig-row{display:flex;align-items:center;gap:16px;margin-top:22px;flex-wrap:wrap}
+.sig-price{border:1px solid rgba(229,200,120,.55);border-radius:999px;padding:10px 24px;font-size:12px;letter-spacing:.18em;background:rgba(0,0,0,.3);color:#FFF3D6;font-weight:700}
+.sig-price strong{color:var(--gold-l);font-size:22px;font-family:"Playfair Display",serif;margin-left:6px}
+.sig-sizes{color:rgba(255,249,240,.55);font-size:13.5px}
+.sig-visual{position:relative;display:flex;justify-content:center}
+.sig-photo{position:relative;width:min(440px,100%);border-radius:26px;overflow:hidden;border:2px solid rgba(229,200,120,.5);box-shadow:0 30px 70px rgba(0,0,0,.5)}
+.sig-photo img{width:100%;height:420px;object-fit:cover;display:block;transition:transform .8s}
+.sig-photo:hover img{transform:scale(1.05)}
+.sig-steam{position:absolute;top:18px;left:50%;transform:translateX(-50%);display:flex;gap:12px}
+.sig-steam i{display:block;width:6px;height:56px;border-radius:6px;background:linear-gradient(to top,transparent,rgba(255,249,240,.7));opacity:.35}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+.sig-steam i{animation:steam 2.8s ease-in-out infinite;opacity:0}
+.sig-steam i:nth-child(2){animation-delay:.4s}.sig-steam i:nth-child(3){animation-delay:.8s}
+}
+.sig-mini-card{position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);background:var(--warm);border:1px solid var(--gold);border-radius:14px;padding:12px 24px;text-align:center;box-shadow:0 16px 40px rgba(0,0,0,.4);white-space:nowrap}
+
+/* ── Why ── */
+.why-section{padding:88px 0;background:var(--ivory)}
+.why-card{background:var(--warm);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:18px;padding:30px 26px;transition:transform .3s,box-shadow .3s,border-color .3s;box-shadow:var(--card-shadow)}
+.why-card:hover{transform:translateY(-6px);box-shadow:var(--card-shadow-hover);border-top-color:var(--burgundy)}
+.why-icon{width:52px;height:52px;border-radius:15px;background:linear-gradient(135deg,rgba(122,23,37,.09),rgba(201,162,74,.16));border:1px solid rgba(201,162,74,.5);color:var(--burgundy);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.why-icon svg{width:26px;height:26px}
+.why-card h3{font-size:13px;letter-spacing:.14em;font-weight:800;color:var(--maroon);text-transform:uppercase}
+.why-card p{font-size:14px;color:#7A625D;margin-top:9px;line-height:1.7}
+
+/* ── About ── */
+.about-section{background:linear-gradient(180deg,#FDF6E9,#FFF9F0);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:88px 0}
+.about-visual{position:relative}
+.about-frame{border-radius:26px;overflow:hidden;border:1px solid #E7D3AC;box-shadow:var(--card-shadow-hover)}
+.about-frame img{width:100%;height:440px;object-fit:cover;display:block;transition:transform .8s}
+.about-frame:hover img{transform:scale(1.04)}
+.about-owner-card{position:absolute;right:-10px;bottom:28px;background:var(--maroon);color:#FFF9F0;border:1px solid var(--gold);border-radius:14px;padding:14px 22px;box-shadow:0 16px 40px rgba(46,7,15,.4)}
+.about-owner-card p:last-child{color:rgba(255,249,240,.65)}
+.about-list{margin-top:20px;list-style:none;padding:0;display:flex;flex-direction:column;gap:11px}
+.about-list li{font-size:14.5px;color:#5C4642;padding-left:30px;position:relative;background:var(--warm);border:1px solid var(--line);border-radius:12px;padding-top:11px;padding-bottom:11px;padding-right:14px}
+.about-list li::before{content:"◆";position:absolute;left:12px;color:var(--burgundy);font-size:11px;top:14px}
+
+/* ── Gallery : masonry-ish premium ── */
+.gallery-section{padding:88px 0;background:var(--ivory)}
+.gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:38px}
+@media(min-width:768px){.gallery-grid{grid-template-columns:repeat(4,1fr);grid-auto-rows:200px}.gallery-grid figure:nth-child(1){grid-column:span 2;grid-row:span 2}.gallery-grid figure:nth-child(6){grid-row:span 2}}
+.gallery-grid figure{position:relative;border-radius:18px;overflow:hidden;cursor:zoom-in;border:1px solid #E7D3AC;margin:0;box-shadow:var(--card-shadow);background:var(--cream)}
+.gallery-grid img{width:100%;height:220px;object-fit:cover;transition:transform .6s;display:block}
+@media(min-width:768px){.gallery-grid img{height:100%}.gallery-grid figure:nth-child(1) img{min-height:414px}}
+.gallery-grid figure:hover img{transform:scale(1.08)}
+.gallery-grid figcaption{position:absolute;bottom:0;left:0;right:0;padding:26px 14px 12px;font-size:12px;font-weight:700;letter-spacing:.06em;color:#FFF9F0;background:linear-gradient(transparent,rgba(46,7,15,.85))}
+.gallery-grid figure::after{content:"";position:absolute;inset:0;border:2px solid transparent;border-radius:18px;transition:border-color .3s;pointer-events:none}
+.gallery-grid figure:hover::after{border-color:rgba(201,162,74,.7)}
+
+/* ── QR ── */
+.qr-section{background:linear-gradient(120deg,#FDF3E2,#F7E7CC);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:72px 0;position:relative;overflow:hidden}
+.qr-section::before{content:"♛";position:absolute;font-size:280px;color:rgba(122,23,37,.05);right:-30px;top:-40px;font-family:"Playfair Display",serif;pointer-events:none}
+.qr-card{background:#fff;border-radius:24px;padding:26px 26px 20px;text-align:center;box-shadow:var(--card-shadow-hover);border:2px solid var(--gold);position:relative}
+.qr-card::before{content:"";position:absolute;inset:8px;border:1px dashed rgba(201,162,74,.5);border-radius:16px;pointer-events:none}
+.qr-frame{background:var(--maroon);border-radius:14px;padding:12px}
+.qr-frame img{border-radius:8px;display:block;background:#fff}
+.qr-brand{font-size:11px;font-weight:800;letter-spacing:.3em;color:var(--burgundy);margin-top:14px}
+.qr-sub{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* ── Location / contact : light premium ── */
+.location-section{padding:88px 0 60px;background:var(--ivory)}
+.addr-card{background:var(--warm);border:1px solid var(--line);border-top:4px solid var(--burgundy);border-radius:22px;padding:32px;box-shadow:var(--card-shadow)}
+.addr-eyebrow{font-size:10px;font-weight:800;letter-spacing:.3em;color:var(--gold-d)}
+.addr-card h3{margin-top:6px}
+.addr-landmark{margin-top:12px;font-size:13px;color:var(--burgundy);background:rgba(122,23,37,.06);border:1px solid rgba(122,23,37,.12);border-radius:10px;padding:9px 13px;font-weight:600}
+.addr-phones{margin-top:18px;font-size:14.5px}
+.addr-label{font-size:10px;font-weight:800;letter-spacing:.26em;color:var(--gold-d)}
+.addr-numbers a{color:var(--maroon);font-weight:700;text-decoration:none}
+.addr-numbers a:hover{color:var(--burgundy);text-decoration:underline}
+.addr-tag{font-size:10px;font-weight:800;background:#E5F6EB;color:#157A3E;border-radius:999px;padding:3px 10px;margin-left:6px;letter-spacing:.06em}
+.map-wrap{border-radius:22px;overflow:hidden;border:1px solid #E0CB9E;min-height:380px;position:relative;box-shadow:var(--card-shadow);background:#fff;display:flex;flex-direction:column}
+.map-wrap iframe{width:100%;flex:1;min-height:330px;border:0}
+.map-caption{display:flex;align-items:center;gap:10px;background:var(--maroon);color:#FFF9F0;padding:13px 20px;font-size:13px}
+.map-caption strong{font-family:"Playfair Display",serif;font-size:15px;color:var(--gold-l)}
+.map-caption span{color:rgba(255,249,240,.65)}
+/* order strip (burgundy — compact, not giant black) */
+.order-strip{margin-top:26px;background:linear-gradient(120deg,var(--maroon-deep),var(--maroon) 60%,#5E1421);border:1px solid rgba(201,162,74,.4);border-radius:22px;padding:30px clamp(20px,4vw,40px);display:flex;flex-wrap:wrap;gap:22px;align-items:center;justify-content:space-between;box-shadow:0 20px 50px rgba(46,7,15,.3)}
+.order-strip-btns{display:flex;gap:12px;flex-wrap:wrap}
+.strip-num{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:12px 20px;transition:all .2s;display:block;min-width:130px;text-align:center}
+.strip-num small{font-size:9px;letter-spacing:.24em;color:rgba(255,249,240,.55);font-weight:800}
+.strip-num strong{display:block;font-size:19px;margin-top:4px;font-family:"Playfair Display",serif;color:#FFF9F0}
+.strip-num:hover{border-color:var(--gold);transform:translateY(-2px)}
+.strip-num.hot{border-color:rgba(229,200,120,.6);background:rgba(201,162,74,.14)}
+.strip-num.hot strong{color:var(--gold-l)}
+
+/* ── Footer : deep burgundy ── */
+.footer{background:linear-gradient(180deg,var(--maroon) 0%,var(--maroon-deep) 100%);border-top:3px solid var(--gold);position:relative}
+.footer::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(560px,80%);height:1px;background:linear-gradient(90deg,transparent,var(--gold-l),transparent)}
+.foot-h{font-size:11px;letter-spacing:.3em;color:var(--gold-l);font-weight:800;margin-bottom:14px}
+.foot-links{list-style:none;padding:0;display:flex;flex-direction:column;gap:10px;font-size:14px}
+.foot-links a{color:rgba(255,249,240,.68);transition:color .2s;text-decoration:none}
+.foot-links a:hover{color:var(--gold-l)}
+.watermark{letter-spacing:.28em;font-size:10px;color:rgba(229,200,120,.55);border:1px solid rgba(201,162,74,.3);padding:6px 14px;border-radius:999px}
+
+/* ── Floating WA + sticky bar ── */
+#waFloat{position:fixed;right:18px;bottom:86px;z-index:50;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#2BD46B,#1E9E52);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 32px rgba(30,158,82,.45);border:2px solid #fff;transition:transform .2s;transform:none;backface-visibility:hidden;contain:layout paint style}
+#waFloat svg{width:30px;height:30px}
+#waFloat:hover{transform:scale(1.08) translateZ(0)}
+.sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:50;display:grid;grid-template-columns:repeat(3,1fr);background:#FFFCF7;border-top:2px solid var(--gold);box-shadow:0 -10px 30px rgba(74,13,23,.15);padding-bottom:env(safe-area-inset-bottom);transform:none;backface-visibility:hidden;contain:layout paint style}
+.sticky-bar a{display:flex;align-items:center;justify-content:center;gap:8px;padding:15px 6px;font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--burgundy)}
+.sticky-bar a svg{width:18px;height:18px}
+.sticky-bar a:nth-child(2){color:#fff;background:linear-gradient(135deg,#22B45E,#1B8A48)}
+.sticky-bar a:nth-child(3){color:var(--gold-d)}
+.sticky-bar a+a{border-left:1px solid var(--line)}
+body{padding-bottom:54px}
+@media(min-width:768px){body{padding-bottom:0}.sticky-bar{display:none}#waFloat{bottom:24px}}
+
+/* ── Lightbox ── */
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(46,7,15,.92);display:flex;align-items:center;justify-content:center;animation:lbIn .25s ease}
+@keyframes lbIn{from{opacity:0}to{opacity:1}}
+.lightbox.hidden{display:none}
+.lightbox img{max-width:90vw;max-height:82vh;border-radius:16px;border:2px solid var(--gold);box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.lightbox button{position:absolute;background:rgba(255,252,247,.14);color:#FFF9F0;border:1px solid rgba(255,255,255,.3);width:48px;height:48px;border-radius:50%;font-size:24px;cursor:pointer;transition:background .2s}
+#lbClose{top:20px;right:20px}#lbPrev{left:14px}#lbNext{right:14px}
+.lightbox button:hover{background:var(--burgundy)}
+
+/* ── Responsive ── */
+@media(max-width:1023px){
+  .hero{padding-top:118px}
+  .hero-arch{width:min(420px,88%)}
+  .hero-badge-bottom{left:2%;bottom:56px}
+}
+@media(max-width:640px){
+  html{scroll-padding-top:80px}
+  .hero{padding:112px 0 70px}
+  .hero-title{font-size:clamp(2.6rem,13vw,3.4rem)}
+  .hero-sub{font-size:15px}
+  .hero-cta .btn-lg{width:100%}
+  .hero-arch{width:min(340px,90%);top:-14px}
+  .hero-photo-main{width:min(310px,84%)}
+  .hero-badge-top{top:18px;right:0;padding:9px 14px}
+  .hero-badge-bottom{position:relative;left:auto;bottom:auto;margin-top:14px;max-width:100%;width:100%}
+  .hero-thumb-row{bottom:auto;top:44%;right:0}
+  .hero-thumb-row img{width:56px;height:56px}
+  .quick-bar{grid-template-columns:1fr}
+  .quick-wrap{margin-top:-30px}
+  .intro-stats{flex-wrap:wrap;gap:16px;width:100%}
+  .stat-sep{display:none}
+  .intro-card{left:8px;right:8px}
+  .intro-frame img,.about-frame img{height:300px}
+  .about-owner-card{right:8px}
+  .gallery-grid img{height:170px}
+  .sig-photo img{height:320px}
+  .sig-mini-card{white-space:normal;width:max-content;max-width:90%}
+  .order-strip-btns{width:100%}
+  .strip-num{flex:1;min-width:0}
+  .addr-card{padding:24px}
+}
+/* ANTI-JITTER: hover lift/scale is a fine-pointer-only delight. On touch or
+   while scrolling with the pointer over cards, :hover sticks and cards jump
+   under the finger. Coarse pointers keep colour/shadow feedback, no movement. */
+@media (hover:none),(pointer:coarse){
+  .qa:hover,.menu-card:hover,.why-card:hover,.btn-call:hover,.btn-wa-nav:hover,
+  .btn-primary:hover,.btn-outline:hover,.btn-whatsapp:hover,.btn-gold:hover,
+  .btn-ghostlight:hover,.buy-btn:hover,.strip-num:hover,.filter:hover,
+  #waFloat:hover{transform:none}
+  .menu-card:hover .menu-img img,.gallery-grid figure:hover img,
+  .intro-frame:hover img,.about-frame:hover img,.sig-photo:hover img{transform:none}
+}
+/* TEMPORARY DIAGNOSTIC — Step 1/3/4/8/9: open the page with ?nomotion=1 to kill
+   ALL motion (animations, transitions, reveal offsets, smooth scroll) and force
+   every reveal visible. Default OFF — final design untouched. Delete this block
+   once the browser test below identifies the culprit. */
+html.debug-no-motion *,html.debug-no-motion *::before,html.debug-no-motion *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+html.debug-no-motion .reveal{opacity:1!important;transform:none!important}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s!important;transition-duration:.001s!important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+  .hero-photo-main img{animation:none}
+}
+/* ═══════════════════════════════════════════════════════════
+   SCROLL-JANK FIX — GPU layers only where they help, static
+   content stays on the fast cached path. Blanket will-change
+   on every card/img would exhaust GPU memory and cause MORE
+   flicker, so promotion is scoped to: the 2 animating hero badges.
+   NOTE (live-isolation finding): content-visibility:auto with an
+   estimated intrinsic size made #menu / document height grow while
+   scrolling (cards swapped estimate<->real heights), which reads
+   as scrollbar jitter. Removed — only 9 menu + 4 why + 8 gallery
+   nodes, render cost is trivial.
+   ═══════════════════════════════════════════════════════════ */
+html, body{overflow-x:clip;width:100%}
+@supports not (overflow:clip){html,body{overflow-x:hidden}}
+html{scroll-behavior:smooth}
+#siteHeader,.sticky-bar,#waFloat{backface-visibility:hidden}
+.hero-badge-top,.hero-badge-bottom{transform:translateY(0) translateZ(0);backface-visibility:hidden;-webkit-backface-visibility:hidden;will-change:auto}
+.menu-img img,.gallery-grid img,.hero-photo-main img,.sig-photo img,.intro-frame img,.about-frame img{aspect-ratio:auto}
+.signature-ghost{pointer-events:none;transform:none}
+/* =========================================================
+   PARADISE BIRYANI — FINAL SCROLL STABILITY PATCH (adapted)
+   Adapted to actual selectors in this repo. Intent preserved:
+   stable width, locked header, reserved image space,
+   fade-only reveals, no touch hover movement.
+   ========================================================= */
+/* Stable document width */
+html{width:100%;overflow-x:clip;scrollbar-gutter:stable;scroll-behavior:smooth}
+body{width:100%;min-width:0;margin:0;overflow-x:clip}
+/* Prevent accidental horizontal overflow */
+*,*::before,*::after{box-sizing:border-box}
+/* Images must reserve their space */
+img{display:block;max-width:100%}
+/* ---------------------------------------------------------
+   HEADER
+   IMPORTANT: DO NOT animate/transform the complete header.
+   NOTE: header is `position:fixed` via Tailwind class in
+   index.html — do NOT change to sticky here. Only lock height
+   and allow visual transitions.
+   --------------------------------------------------------- */
+#siteHeader{position:fixed;height:76px;min-height:76px;backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:background-color 180ms ease,box-shadow 180ms ease,border-color 180ms ease;transform:none}
+/* NEVER change header height/padding/transform on scroll */
+#siteHeader.scrolled{height:76px;min-height:76px;transform:none}
+/* Lock inner bar height */
+#siteHeader>.max-w-7xl{height:76px;min-height:76px}
+/* ---------------------------------------------------------
+   MENU CARDS — real selectors: .menu-img, .menu-card
+   --------------------------------------------------------- */
+.menu-card,.why-card,.qa{min-width:0;contain:layout style}
+/* Reserve food-image space (actual class is .menu-img) */
+.menu-card .menu-img{aspect-ratio:8/5;min-height:0;overflow:hidden}
+.menu-card .menu-img img{width:100%;height:100%;object-fit:cover}
+/* Desktop hover only. NEVER apply hover movement to coarse/touch. */
+@media (hover:hover) and (pointer:fine){
+  .menu-card:hover{transform:translateY(-4px)}
+  .menu-card img{transition:transform 350ms ease}
+  .menu-card:hover img{transform:scale(1.035)}
+  .why-card:hover{transform:translateY(-3px)}
+  .qa:hover{transform:translateY(-2px)}
+}
+/* Touch/scroll devices: ZERO movement */
+@media (hover:none),(pointer:coarse){
+  .menu-card,.menu-card:hover,.why-card,.why-card:hover,.qa,.qa:hover,.menu-card img,.menu-card:hover img{transform:none!important;transition:none!important}
+}
+/* ---------------------------------------------------------
+   REVEAL SYSTEM — canonical fix lives at the source block
+   (── Reveal ──). No duplicate override here by design.
+   --------------------------------------------------------- */
+/* ---------------------------------------------------------
+   QUANTITY — prevent width changes when number changes.
+   --------------------------------------------------------- */
+.qty-val{display:inline-flex;justify-content:center;align-items:center;width:2.5rem;min-width:2.5rem;max-width:2.5rem;font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+/* ---------------------------------------------------------
+   BUTTONS — keep geometry permanently stable.
+   --------------------------------------------------------- */
+.buy-btn,.btn-primary,.btn-outline,.btn-whatsapp,.btn-gold,.btn-ghostlight,.btn-call,.btn-wa-nav,button{min-height:44px}
+/* Hover must never change layout dimensions */
+@media (hover:hover) and (pointer:fine){
+  .buy-btn:hover{transform:translateY(-1px)}
+}
+/* ---------------------------------------------------------
+   WHATSAPP FLOAT — real ID is #waFloat. Completely outside
+   document flow. Preserve mobile offset above sticky bar.
+   --------------------------------------------------------- */
+#waFloat{position:fixed!important;right:20px;bottom:86px;width:58px;height:58px;min-width:58px;min-height:58px;margin:0!important;z-index:50;transform:none;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+@media(min-width:768px){#waFloat{bottom:24px}}
+/* ---------------------------------------------------------
+   MOBILE STICKY BAR — real class is .sticky-bar
+   --------------------------------------------------------- */
+.sticky-bar{position:fixed;left:0;right:0;bottom:0;width:100%;max-width:100%;z-index:50;transform:none;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+/* ---------------------------------------------------------
+   GALLERY — real class is .gallery-grid
+   --------------------------------------------------------- */
+.gallery-grid img{display:block;width:100%;object-fit:cover}
+/* ---------------------------------------------------------
+   DO NOT use GPU promotion on every element. Intentional.
+   --------------------------------------------------------- */
+/* ═══════════════════════════════════════════════════════════
+   HANG FIX — stop continuous repaint + skip offscreen work.
+   Design/colors/fonts untouched.
+   ═══════════════════════════════════════════════════════════ */
+/* Hero image parent clips curve — no horizontal overflow */
+.hero-visual{overflow:hidden;max-width:100%}
+.hero-photo-main picture{display:block;width:100%;height:100%}
+.hero-photo-main img{width:100%;height:100%;object-fit:cover}
+/* Heavy textures stay on cheap paint path */
+.hero-pattern,.signature-texture,.signature-ghost{contain:paint;pointer-events:none}
+/* Skip offscreen sections until scrolled near */
+.menu-section,.gallery-section,.why-section,.about-section,.qr-section,.location-section{content-visibility:auto;contain-intrinsic-size:auto 900px}
+/* Touch + reduced-motion: zero infinite motion, zero lift */
+@media (hover:none),(pointer:coarse){
+.hero-badge-top,.hero-badge-bottom,.hero-dot,.steam-mini i,.sig-steam i,.hero-photo-main img,.menu-card{animation:none!important}
+}
+@media (prefers-reduced-motion:reduce){
+.hero-badge-top,.hero-badge-bottom,.hero-dot,.steam-mini i,.sig-steam i,.hero-photo-main img,.menu-card,.gallery-grid img{animation:none!important;transition:none!important}
+}
+/* Lazy map reserves space so no CLS when it loads */
+.map-wrap iframe{background:#F3E4CC;min-height:330px}
+.js-lazy-map:not([src^="https"]){visibility:visible}
